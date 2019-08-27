@@ -43,8 +43,6 @@ public class Shop {
         this.place = place;
     }
 
-    
-
     @Override
     public String toString() {
         return "Player [id=" + id + ", name=" + name + ", priceRange=" + priceRange + ", place=" + place + "]";
