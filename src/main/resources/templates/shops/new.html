@@ -10,19 +10,22 @@
   </head>
   <body>
     <div class="container">
-      <h1>New Player</h1>
-      <form th:action="@{/shops}" th:method="post">
-        <div class="form-group">
+      <h1>New Shop</h1>
+      <form th:action="@{/shops}" th:method="post" th:object="${shop}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">店名</label>
           <input class="form-control" type="text" name="name" />
+          <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" th:classappend="${#fields.hasErrors('priceRange')}? has-error">
           <label class="control-label">価格帯</label>
           <input class="form-control" type="text" name="priceRange" />
+          <span class="text-danger" th:if="${#fields.hasErrors('priceRange')}" th:errors="*{priceRange}"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group"  th:classappend="${#fields.hasErrors('place')}? has-error">
           <label class="control-label">場所</label>
           <input class="form-control" type="text" name="place" />
+          <span class="text-danger" th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></span>
         </div>
         <button class="btn btn-primary" type="submit">作成</button>
       </form>

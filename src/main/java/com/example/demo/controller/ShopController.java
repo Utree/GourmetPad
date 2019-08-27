@@ -2,9 +2,12 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,25 +20,27 @@ import com.example.demo.domain.Shop;
 import com.example.demo.service.ShopService;
 
 @Controller
-@RequestMapping("/shops") // ①
+@RequestMapping("/shops")
 public class ShopController {
     @Autowired
     private ShopService shopService;
 
     @GetMapping
-    public String index(Model model) { // ②
+    public String index(Model model) {
         List<Shop> shops = shopService.findAll();
-        model.addAttribute("shops", shops); // ③
-        return "shops/index"; // ④
+        model.addAttribute("shops", shops);
+        return "shops/index";
     }
 
     @GetMapping("new")
     public String newShop(Model model) {
+        Shop shop = new Shop();
+        model.addAttribute("shop", shop);
         return "shops/new";
     }
 
     @GetMapping("{id}/edit")
-    public String edit(@PathVariable Long id, Model model) { // ⑤
+    public String edit(@PathVariable Long id, Model model) {
         Shop shop = shopService.findOne(id);
         model.addAttribute("shop", shop);
         return "shops/edit";
@@ -49,13 +54,16 @@ public class ShopController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute Shop shop) { // ⑥
+    public String create(@Valid @ModelAttribute Shop shop, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) return "shops/new";
         shopService.save(shop);
-        return "redirect:/shops"; // ⑦
+        return "redirect:/shops";
     }
 
     @PutMapping("{id}")
-    public String update(@PathVariable Long id, @ModelAttribute Shop shop) {
+    public String update(@PathVariable Long id, @Valid @ModelAttribute Shop shop, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) return "shops/edit";
+        
         shop.setId(id);
         shopService.save(shop);
         return "redirect:/shops";
