@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import com.example.demo.repository.CategoryV1Repository;
 import com.example.demo.repository.PriceRangeV1Repository;
-import com.example.demo.repository.ShopRepository;
 import com.example.demo.repository.ShopV2Repository;
 import com.example.demo.domain.CategoryV1;
 import com.example.demo.domain.PriceRangeV1;
