@@ -30,3 +30,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### additional ###
+.attach_pid*
