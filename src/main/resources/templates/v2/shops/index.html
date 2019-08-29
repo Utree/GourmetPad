@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
-    <title>Show Shop</title>
+    <title>Listing Shops</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -10,8 +10,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>Show Shop</h1>
-
+      <h1>Listing Shops</h1>
       <table class="table">
         <thead>
           <tr>
@@ -19,26 +18,34 @@
             <th>店名</th>
             <th>価格帯</th>
             <th>場所</th>
+            <th>カテゴリ</th>
+            <th></th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr th:object="${shop}">
+          <!-- ② -->
+          <tr th:each="shops:${shops}" th:object="${shops}">
+            <!-- ③ -->
             <td th:text="*{id}"></td>
             <td th:text="*{name}"></td>
-            <td th:text="*{priceRange}"></td>
+            <td th:text="*{priceRange.name}"></td>
             <td th:text="*{place}"></td>
+            <td th:text="*{category.name}"></td>
+            <!-- ④ -->
+            <td><a class="btn btn-secondary" th:href="@{/v2/shops/{id}(id=*{id})}">参照</a></td>
+            <td><a class="btn btn-success" th:href="@{/v2/shops/{id}/edit(id=*{id})}">編集</a></td>
+            <td>
+              <!-- ⑤ -->
+              <form th:action="@{/v2/shops/{id}(id=*{id})}" th:method="delete">
+                <input class="btn btn-danger" type="submit" value="削除" />
+              </form>
+            </td>
           </tr>
         </tbody>
       </table>
-
-      <div>
-        <a class="btn btn-success" th:href="@{/shops/{id}/edit(id=*{id})}">編集</a>
-      </div>
-      <!-- スタイリング用pタグ -->
-      <p></p>
-      <div class="pull-right">
-        <a class="btn btn-outline-primary" href="/shops">一覧画面へ</a>
-      </div>
+      <a class="btn btn-primary" href="/v2/shops/new">新規作成</a>
     </div>
   </body>
 </html>

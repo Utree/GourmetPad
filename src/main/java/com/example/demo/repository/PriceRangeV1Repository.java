@@ -9,4 +9,5 @@ import com.example.demo.domain.PriceRangeV1;
 @Repository
 public interface PriceRangeV1Repository extends JpaRepository<PriceRangeV1, Long> {
     List<PriceRangeV1> findByName(String name);
+    List<PriceRangeV1> findByAscOrder(Integer ascOrder);
 }

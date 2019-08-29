@@ -20,7 +20,7 @@ import com.example.demo.domain.Shop;
 import com.example.demo.service.ShopService;
 
 @Controller
-@RequestMapping("/shops")
+@RequestMapping("/v1/shops")
 public class ShopController {
     @Autowired
     private ShopService shopService;
@@ -29,49 +29,49 @@ public class ShopController {
     public String index(Model model) {
         List<Shop> shops = shopService.findAll();
         model.addAttribute("shops", shops);
-        return "shops/index";
+        return "v1/shops/index";
     }
 
-    @GetMapping("new")
+    @GetMapping("/new")
     public String newShop(Model model) {
         Shop shop = new Shop();
         model.addAttribute("shop", shop);
-        return "shops/new";
+        return "v1/shops/new";
     }
 
-    @GetMapping("{id}/edit")
+    @GetMapping("/{id}/edit")
     public String edit(@PathVariable Long id, Model model) {
         Shop shop = shopService.findOne(id);
         model.addAttribute("shop", shop);
-        return "shops/edit";
+        return "v1/shops/edit";
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public String show(@PathVariable Long id, Model model) {
         Shop shop = shopService.findOne(id);
         model.addAttribute("shop", shop);
-        return "shops/show";
+        return "v1/shops/show";
     }
 
     @PostMapping
     public String create(@Valid @ModelAttribute Shop shop, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) return "shops/new";
+        if(bindingResult.hasErrors()) return "v1/shops/new";
         shopService.save(shop);
-        return "redirect:/shops";
+        return "redirect:/v1/shops";
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public String update(@PathVariable Long id, @Valid @ModelAttribute Shop shop, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) return "shops/edit";
+        if(bindingResult.hasErrors()) return "v1/shops/edit";
         
         shop.setId(id);
         shopService.save(shop);
-        return "redirect:/shops";
+        return "redirect:/v1/shops";
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public String destroy(@PathVariable Long id) {
         shopService.delete(id);
-        return "redirect:/shops";
+        return "redirect:/v1/shops";
     }
 }

@@ -11,7 +11,7 @@
   <body>
     <div class="container">
       <h1>Editing Shop</h1>
-      <form th:action="@{/shops/{id}(id=*{id})}" th:method="put" th:object="${shop}">
+      <form th:action="@{/v1/shops/{id}(id=*{id})}" th:method="put" th:object="${shop}">
         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">店名</label>
           <!-- ① -->
@@ -33,7 +33,7 @@
       <!-- スタイリング用 pタグ -->
       <p></p>
       <div class="pull-right">
-        <a class="btn btn-outline-primary" href="/shops">一覧画面へ</a>
+        <a class="btn btn-outline-primary" href="/v1/shops">一覧画面へ</a>
       </div>
     </div>
   </body>

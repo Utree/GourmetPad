@@ -11,28 +11,41 @@
   <body>
     <div class="container">
       <h1>New Shop</h1>
-      <form th:action="@{/shops}" th:method="post" th:object="${shop}">
+      <form th:action="@{/v2/shops}" th:method="post" th:object="${shopV2}">
         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">店名</label>
-          <input class="form-control" type="text" name="name" />
+          <input class="form-control" type="text" name="name" th:field="*{name}">
           <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
-        <div class="form-group" th:classappend="${#fields.hasErrors('priceRange')}? has-error">
-          <label class="control-label">価格帯</label>
-          <input class="form-control" type="text" name="priceRange" />
-          <span class="text-danger" th:if="${#fields.hasErrors('priceRange')}" th:errors="*{priceRange}"></span>
+
+        <div class="form-group">
+          <label class="control-label">カテゴリ</label>
+          <select class="form-control" name="category" th:field="*{category}">
+            <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+          </select>
+          <span class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
         </div>
+
         <div class="form-group"  th:classappend="${#fields.hasErrors('place')}? has-error">
           <label class="control-label">場所</label>
-          <input class="form-control" type="text" name="place" />
+          <input class="form-control" type="text" name="place" th:field="*{place}"/>
           <span class="text-danger" th:if="${#fields.hasErrors('place')}" th:errors="*{place}"></span>
         </div>
+
+        <div class="form-group">
+            <label class="control-label">価格帯</label>
+            <select class="form-control" name="priceRange" th:field="*{priceRange}">
+              <option th:each="priceRange:${priceRange}" th:value="${priceRange.id}" th:text="${priceRange.name}"></option>
+            </select>
+          <span class="text-danger" th:if="${#fields.hasErrors('priceRange')}" th:errors="*{priceRange}"></span>
+        </div>
+
         <button class="btn btn-primary" type="submit">作成</button>
       </form>
       <!-- スタイリング用pタグ -->
       <p></p>
       <div class="pull-right">
-        <a class="btn btn-outline-primary" href="/shops">一覧画面へ</a>
+        <a class="btn btn-outline-primary" href="/v2/shops">一覧画面へ</a>
       </div>
     </div>
   </body>
