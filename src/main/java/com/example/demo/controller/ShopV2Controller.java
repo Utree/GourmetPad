@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.demo.domain.CategoryV1;
 import com.example.demo.domain.ShopV2;
 import com.example.demo.service.CategoryV1Service;
 import com.example.demo.service.PriceRangeV1Service;

@@ -7,10 +7,26 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/earlyaccess/nikukyu.css" rel="stylesheet">
   </head>
   <body>
-    <div class="container">
-      <h1>Editing Shop</h1>
+
+    <!-- Masthead -->
+    <header class="text-center" style="background-color: moccasin;">
+      
+      <div class="container d-flex align-items-center flex-column">
+
+        <h1 style="font-family: 'Nikukyu'; font-size: 80px; color: darkorange;">グルメパッド</h1>
+        
+        <h2 style="margin: 30px; font-size: 20px; color: saddlebrown;">内容を変更する</h2>
+
+      </div>
+    </header>
+
+    <section class="page-section d-flex align-items-center flex-column" id="contact">
+
+      <div class="container" style="margin:  50px;">
+
       <form th:action="@{/v2/shops/{id}(id=*{id})}" th:method="put" th:object="${shopV2}">
         <div class="form-group" th:classappend="${#fields.hasErrors('name')}? has-error">
           <label class="control-label">店名</label>
@@ -47,6 +63,14 @@
       <div class="pull-right">
         <a class="btn btn-outline-primary" href="/v2/shops">一覧画面へ</a>
       </div>
-    </div>
+      </div>
+    </section>
+
+    <!-- Copyright Section -->
+    <section class="copyright py-4 text-center text-white" style="background-color: moccasin;">
+      <div class="container">
+        <small>Copyright © Yuki Sekiya</small>
+      </div>
+    </section>
   </body>
 </html>
