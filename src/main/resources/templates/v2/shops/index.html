@@ -18,7 +18,21 @@
 
           <h1 style="font-family: 'Nikukyu'; font-size: 80px; color: darkorange;">グルメパッド</h1>
           
-          <h2 style="margin: 30px; font-size: 20px; color: saddlebrown;">おいしいお店をメモしよう</h2>
+          <h2 style="margin: 30px; font-size: 20px; color: saddlebrown;"></h2>
+
+          <div class="conteiner">
+            <form th:action="@{/v2/shops/search/}" method="get">
+              <div class="form-row align-items-center">
+                <div class="col-auto">
+                  <label class="sr-only" for="inlineFormInput">Name</label>
+                  <input name="keyword" type="text" class="form-control mb-2" id="keyword" placeholder="イタリアン">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mb-2">検索</button>
+                </div>
+              </div>
+            </form>
+          </div>
 
         </div>
       </header>

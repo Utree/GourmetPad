@@ -21,6 +21,10 @@ public class ShopV2Service {
         return shopV2Repository.findById(id).orElse(null);
     }
 
+    public List<ShopV2> findByName(String name) {
+        return shopV2Repository.findByName(name);
+    }
+
     public ShopV2 save(ShopV2 shop) {
         return shopV2Repository.save(shop);
     }

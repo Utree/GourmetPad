@@ -25,7 +25,7 @@
               <div class="form-row align-items-center">
                 <div class="col-auto">
                   <label class="sr-only" for="inlineFormInput">Name</label>
-                  <input name="keyword" type="text" class="form-control mb-2" id="keyword" placeholder="イタリアン">
+                  <input name="keyword" type="text" class="form-control mb-2" id="inlineFormInput" placeholder="イタリアン">
                 </div>
                 <div class="col-auto">
                   <button type="submit" class="btn btn-primary mb-2">検索</button>
@@ -73,7 +73,11 @@
           </tr>
         </tbody>
       </table>
-      <a class="btn btn-primary" href="/v2/shops/new">新規作成</a>
+      <span class="text-danger" th:if="${error}" th:text="${error}"></span>
+      
+      <!-- スタイリング用pタグ -->
+      <p></p>
+      <a class="btn btn-outline-primary" href="/v2/shops/">一覧画面へ</a>
     </div>
   </section>
 

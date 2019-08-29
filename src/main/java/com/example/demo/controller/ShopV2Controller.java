@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.domain.ShopV2;
 import com.example.demo.service.CategoryV1Service;
@@ -36,6 +37,22 @@ public class ShopV2Controller {
         List<ShopV2> shops = shopService.findAll();
         model.addAttribute("shops", shops);
         return "v2/shops/index";
+    }
+
+    @GetMapping("/search")
+    public String searchShop(@RequestParam String keyword, Model model) {
+        if(keyword.isEmpty()) {
+            model.addAttribute("error", "keywordが空です");
+        } else {
+            List<ShopV2> shops = shopService.findByName(keyword);
+            if(shops.isEmpty()) {
+                model.addAttribute("error", "見つかりませんでした");
+            } else {
+                model.addAttribute("shops", shops);
+            }
+        }
+
+        return "v2/shops/search";
     }
 
     @GetMapping("/new")
