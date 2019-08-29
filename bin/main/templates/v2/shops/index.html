@@ -42,7 +42,6 @@
       <table class="table  text-center">
         <thead>
           <tr>
-            <th>ID</th>
             <th>店名</th>
             <th>価格帯</th>
             <th>場所</th>
@@ -53,15 +52,11 @@
           </tr>
         </thead>
         <tbody>
-          <!-- ② -->
           <tr th:each="shops:${shops}" th:object="${shops}">
-            <!-- ③ -->
-            <td th:text="*{id}"></td>
             <td th:text="*{name}"></td>
             <td th:text="*{priceRange.name}"></td>
             <td th:text="*{place}"></td>
             <td th:text="*{category.name}"></td>
-            <!-- ④ -->
             <td><a class="btn btn-secondary" th:href="@{/v2/shops/{id}(id=*{id})}">参照</a></td>
             <td><a class="btn btn-success" th:href="@{/v2/shops/{id}/edit(id=*{id})}">編集</a></td>
             <td>
